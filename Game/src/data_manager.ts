@@ -4,6 +4,7 @@ import { Pokemon } from "./typedef";
 import { PLAYER_POKEMON_TEAM } from "./player-pokemon-list";
 const TILE_SIZE=64;
 
+
 interface Position {
     x: number;
     y: number;

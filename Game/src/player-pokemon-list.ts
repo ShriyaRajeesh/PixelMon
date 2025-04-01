@@ -2,10 +2,9 @@
 import { POKEMON_DATA } from "./pokemon-data"
 
 export const PLAYER_POKEMON_TEAM = [
-  
-    POKEMON_DATA.PIKACHU,
-    POKEMON_DATA.PIDGEY,
-    POKEMON_DATA.SQUIRTLE,
+    // POKEMON_DATA.PIKACHU,
+    // POKEMON_DATA.PIDGEY,
+    // POKEMON_DATA.SQUIRTLE,
     // POKEMON_DATA.VULPIX
 //   {
 //       PokemonId: 1,

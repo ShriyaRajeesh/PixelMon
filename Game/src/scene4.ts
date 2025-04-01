@@ -9,8 +9,11 @@ import Npc from "./characters/npc"; // Import the Npc class
 import { POKEMON } from "./asset_keys";
 import { Pokemon } from "./typedef";
 import { POKEMON_DATA } from "./pokemon-data";
+import { Character } from "./characters/character";
+import { ProfessorOak } from "./characters/profOak";
+import { DialogueBox } from "./dialogue";
 
-const TILE_SIZE = 64;
+const TILE_SIZE=64;
 
 export default class scene4 extends Phaser.Scene {
     private player!: Player;
@@ -19,21 +22,20 @@ export default class scene4 extends Phaser.Scene {
     private wildPokemonEncountered!: boolean;
     private playerTeam: any[];
     private npc!: Npc; // Add npc property
+    private profOak!: ProfessorOak; // Use ProfessorOak class
+    private oakEventTriggered: boolean = false;
+    private dialogueBox!: DialogueBox;
+    private opponentTeam: Pokemon[] = [
+        POKEMON_DATA.CHIKORITA,
+        POKEMON_DATA.GEODUDE,
+        // Add more Pokémon here
+    ];
 
     constructor() {
         super("scene4");
         this.playerTeam = [];
     }
     preload() {
-        // this.load.spritesheet('bulbasaur', 'assets/sprites/bulbasaur.png', {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
-    
-        // this.load.spritesheet('charmander', 'assets/sprites/charmander.png', {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
     }
     
     init() {
@@ -71,6 +73,7 @@ export default class scene4 extends Phaser.Scene {
                 this.handlePlayerMovementUpdate();
             }
         });
+        
         this.cameras.main.startFollow(this.player.sprite);
         this.add.image(0, 0, WORLD_ASSET_KEYS.PALLET_FOREGROUND, 0).setOrigin(0);
 
@@ -80,16 +83,13 @@ export default class scene4 extends Phaser.Scene {
         // Create NPC instance
         this.npc = new Npc(this, { x: 300, y: 300 });
 
-        this.input!.keyboard!.on('keydown-Z', () => {
-            const playerPosition = {
-              x: this.player.sprite.x,
-              y: this.player.sprite.y,
-            };
-            if (this.npc!.isNearPlayer(playerPosition)) {
-              this.startBattleScene();
-            }
-          });
-          
+        this.dialogueBox = new DialogueBox(this);
+        this.events.on('wake', () => {
+            // Ensure dialogue box is hidden when returning from battle
+            this.dialogueBox.hideDialogue();
+            this.player.unlockMovement();
+        });
+        
     }
 
     update(time: DOMHighResTimeStamp) {
@@ -110,8 +110,22 @@ export default class scene4 extends Phaser.Scene {
         };
 
         if (this.npc.isNearPlayer(playerPosition)) {
-            this.npc.displayGreeting();
-          }
+            if (!this.dialogueBox.visible) {  // Prevent multiple calls
+                const dialogue = [
+                    { speaker: "NPC", text: "I've been waiting for a real challenge!" },
+                    { speaker: "NPC", text: "Don't let me down!" }
+                ];
+                this.dialogueBox.showDialogue(dialogue, () => {
+                    this.startBattleScene();
+                });
+            }
+        }
+        else if (this.dialogueBox.visible && !this.oakEventTriggered) {
+            // Only hide if not in Oak's event and player moved away
+            this.dialogueBox.hideDialogue();
+        }
+        
+        
     }
 
     handlePlayerMovementUpdate() {
@@ -125,10 +139,30 @@ export default class scene4 extends Phaser.Scene {
         if (!this.encounterLayer) {
             return;
         }
-        const isInEncounterZone = this.encounterLayer.getTileAtWorldXY(this.player.sprite.x, this.player.sprite.y, true).index !== -1;
-        if (!isInEncounterZone) {
-            return;
-        }
+        const playerX = this.player.sprite.x;
+    const playerY = this.player.sprite.y;
+
+    // Define the range
+    const minX = 9 * TILE_SIZE;
+    const maxX = 13 * TILE_SIZE;
+    const minY = 17 * TILE_SIZE;
+    const maxY = 17 * TILE_SIZE;
+
+    // Check if the player is within the range and has no Pokémon
+    if (
+        this.player.getPokemonTeam().length === 0 &&
+        playerX > minX && playerX < maxX &&
+        playerY >= minY && playerY <= maxY
+    ) {
+        this.triggerProfessorOakEvent();
+        return;
+    }
+
+    // Check if the player is in an encounter zone
+    const isInEncounterZone = this.encounterLayer.getTileAtWorldXY(playerX, playerY, true).index !== -1;
+    if (!isInEncounterZone) {
+        return;
+    }
 
         this.wildPokemonEncountered = Math.random() < 0.2;
         if (this.wildPokemonEncountered) {
@@ -141,22 +175,62 @@ export default class scene4 extends Phaser.Scene {
             });
         }
     }
-    private opponentTeam: Pokemon[] = [
-        POKEMON_DATA.CHARMANDER,
-        POKEMON_DATA.BULBASAUR,
-        // Add more Pokémon here
-      ];
 
-      private startBattleScene() {
+
+
+    private triggerProfessorOakEvent() {
+        if (this.oakEventTriggered) return;
+        this.oakEventTriggered = true;
+
+        console.log("Professor Oak appears!");
+
+        this.player.lockMovement();
+        
+
+        // Create Professor Oak instance
+        this.profOak = new ProfessorOak({
+            scene: this,
+            assetKey: "professor_oak",
+            position: { x: this.player.sprite.x -25 , y: this.player.sprite.y - 100 },
+            direction: DIRECTION.LEFT,
+        });
+
+        // Start the encounter
+
+        this.dialogueBox.showDialogue([
+            { speaker: "Oak", text: "Wait! Don't go into the tall grass!" },
+            { speaker: "Oak", text: "It's dangerous! Come with me" }
+        ], () => {
+            // Start fade out
+            this.cameras.main.fadeOut(100, 0, 0, 0);
+            
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.profOak.startEncounter(() => {
+                    console.log("Transitioning to lab...");
+                    this.scene.start("scene5", {
+                        playerPosition: { x: 200, y: 300 },
+                        profOakPosition: { x: 300, y: 500 }
+                    });
+                });
+            });
+        });
+    }
+
+    
+
+
+    private startBattleScene() {
         if (this.player && this.opponentTeam) {
-          this.scene.start('scene2', {
-            player: this.player,
-            opponentTeam: this.opponentTeam,
-            canCatch: false
-          });
+
+            this.dialogueBox.hideDialogue();
+            this.scene.start('scene2', {
+                player: this.player,
+                opponentTeam: this.opponentTeam,
+                canCatch: false
+            });
         } else {
-          console.error('Missing player or opponentTeam');
+        console.error('Missing player or opponentTeam');
         }
-      }
-      
+    }
+    
 }

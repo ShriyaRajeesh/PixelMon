@@ -7,6 +7,7 @@ type PlayerConfig = Omit<CharacterConfig, "assetKey"|"assetFrame">;
 
 export class Player extends Character{
     private pokemonTeam: any[];
+    private isLocked: boolean = false;
     constructor(config:PlayerConfig){
         super({
             ...config,
@@ -14,26 +15,33 @@ export class Player extends Character{
             assetFrame:0,
         });
         this.pokemonTeam = dataManager.storeData.get(DATA_MANAGER_KEYS.PLAYER_TEAM) || [];
-        
+         
     }
 
-        moveCharacter(direction:Direction){
-            super.moveCharacter(direction);
-        
-            switch(this.direction){
-                case DIRECTION.DOWN:
-                case DIRECTION.LEFT:
-                case DIRECTION.UP:
-                case DIRECTION.RIGHT:
+    lockMovement() {
+        this.isLocked = true;
+    }
+    unlockMovement() {
+        this.isLocked = false;
+    }
+    
 
-                if(this.phaserGameObject.anims.currentAnim?.key!==`PLAYER_${this.direction}`){
-                            this.phaserGameObject.anims.play(`PLAYER_${this.direction}`)
-                    }
+    moveCharacter(direction: Direction) {
+        if (this.isLocked) return; // Prevent movement if locked
+    
+        super.moveCharacter(direction);
+    
+        switch (this.direction) {
+            case DIRECTION.DOWN:
+            case DIRECTION.LEFT:
+            case DIRECTION.UP:
+            case DIRECTION.RIGHT:
+                if (this.phaserGameObject.anims.currentAnim?.key !== `PLAYER_${this.direction}`) {
+                    this.phaserGameObject.anims.play(`PLAYER_${this.direction}`);
+                }
                 break;
-                
-
-            }
         }
+    }
         getPokemonTeam() {
             return this.pokemonTeam;
         }

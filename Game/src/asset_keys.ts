@@ -95,5 +95,13 @@ export const WORLD_ASSET_KEYS = Object.freeze({
 
 export const CHARACTER_ASSET_KEYS = Object.freeze({
     PLAYER : 'PLAYER',
-    NPC: 'NPC'
+    NPC: 'NPC',
+    OAK:'OAK'
+})
+export const LAB_ASSET_KEYS= Object.freeze({
+    LAB: 'LAB',
+    LAB_COLLISION: 'LAB_COLLISION',
+    LAB_FOREGROUND : 'LAB_FOREGROUND',
+    LAB_MAIN_LEVEL: 'LAB_MAIN_LEVEL'
+
 })

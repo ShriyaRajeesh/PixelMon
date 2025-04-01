@@ -15,6 +15,9 @@ class Npc {
     this.sprite = scene.add.sprite(position.x, position.y, CHARACTER_ASSET_KEYS.NPC); // Use your NPC sprite key
     this.sprite.setScale(3); // Adjust scale as needed
   }
+  public get getsprite(): Phaser.GameObjects.Sprite {
+    return this.sprite;
+}
 
   isNearPlayer(playerPosition: Coordinate): boolean {
     return Math.abs(playerPosition.x - this.position.x) + Math.abs(playerPosition.y - this.position.y) <= 100;

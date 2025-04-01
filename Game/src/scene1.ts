@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import "./style.css";
 import { PLAYER_POKEMON_TEAM } from "./player-pokemon-list";
-import { CHARACTER_ASSET_KEYS, WORLD_ASSET_KEYS } from "./asset_keys";
+import { BATTLE_ASSET_KEYS, CHARACTER_ASSET_KEYS, LAB_ASSET_KEYS, WORLD_ASSET_KEYS } from "./asset_keys";
 import { POKEMON_DATA } from "./pokemon-data";
 
 
@@ -29,10 +29,20 @@ export default class scene1 extends Phaser.Scene
         this.load.image(WORLD_ASSET_KEYS.PALLET_COLLISION, "src/assets/cities/cities/collision.png")
         this.load.image(WORLD_ASSET_KEYS.PALLET_FOREGROUND, "src/assets/cities/cities/level_foreground.png")
         this.load.image(WORLD_ASSET_KEYS.PALLET_ENCOUNTER_ZONE, "src/assets/cities/cities/encounter.png")
+
+        //loading lab assets 
+        this.load.image(LAB_ASSET_KEYS.LAB, "src/assets/lab/lab_map.png")
+        this.load.tilemapTiledJSON(LAB_ASSET_KEYS.LAB_MAIN_LEVEL, "src/assets/lab/lab_map.json")
+        this.load.image(LAB_ASSET_KEYS.LAB_COLLISION, "src/assets/lab/collision.png")
+        this.load.image(LAB_ASSET_KEYS.LAB_FOREGROUND, "src/assets/lab/lab_foreground.png")
+
         
         //loading character assets
         this.load.atlas(CHARACTER_ASSET_KEYS.PLAYER,"src/assets/player/male_sprite.png", "src/assets/player/male_sprite.json");
         this.load.atlas(CHARACTER_ASSET_KEYS.NPC,"src/assets/player/npc.png", "src/assets/player/npc.json");
+        this.load.image(CHARACTER_ASSET_KEYS.OAK,"src/assets/player/profOak.png");
+        //loading pokeball
+        this.load.image(BATTLE_ASSET_KEYS.POKEBALL, "src/assets/images/pokeball.png")
     }
     create() {
         this.add.image(480, 270, "startscreen"); // Add the image

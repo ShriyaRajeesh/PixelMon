@@ -99,10 +99,12 @@ export class Character{
 
     }
     handleSpriteMovement(){
+        
 
-        if(this.direction===DIRECTION.NONE){
+        if (this.direction === DIRECTION.NONE) {
             return;
         }
+        
 
         const updatedPosition = getTargetPostionFromGameObjectPositionAndDirection(this.targetPosition,this.direction)
         this.previousTargetPositon={...this.targetPosition};
