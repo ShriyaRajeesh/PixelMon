@@ -4,6 +4,9 @@ import {Pokemon , BattlePokemonConfig , Coordinate ,Attack} from "./typedef"
 import { DATA_ASSET_KEYS } from "./asset_keys";
 import { TYPE_EFFECTIVENESS } from "./type-effectiveness";
 import { dataManager } from "./data_manager";
+import { POKEMON_DATA } from "./pokemon-data";
+import { POKEMON } from "./asset_keys";
+
 // import { BattleMenu } from "./battle-menu";
 
 export class BattlePokemon {
@@ -23,8 +26,8 @@ export class BattlePokemon {
     private _experience: number;
     private _experienceToNextLevel: number;
     private _pokemonLevelText!: Phaser.GameObjects.Text;
-    protected evolveTo: string | null;
-    protected evolutionLevel: number | null;
+    public evolveTo: string ;
+   public  evolutionLevel: number;
 
 
     constructor(config: BattlePokemonConfig, position: Coordinate ) {
@@ -69,6 +72,9 @@ export class BattlePokemon {
     });
     
     }
+    get pokemonID():number{
+        return this._pokemonDetails.PokemonId;
+    }
 
     get isFainted():boolean {
         return this.currentHealth<=0;
@@ -100,7 +106,7 @@ export class BattlePokemon {
         if (this.currentHealth < 0) {
             this.currentHealth = 0;
         }
-        console.log("in battle pokemon ",this.currentHealth)
+        
         this._healthBar.setMeterPercentageAnimated(this.currentHealth / this.maxHealth, {
             callback: callback
         });
@@ -186,7 +192,7 @@ createHealthBarComponents() {
             fontSize: '15px',
         }
     ).setOrigin(1, 0);
-    console.log("in battle pokemon HP ", this.currentHealth);
+    // console.log("in battle pokemon HP ", this.currentHealth);
     
     
 
@@ -296,7 +302,6 @@ createHealthBarComponents() {
     
         // Update stats (for simplicity, just increase max HP and base attack)
         this.maxHealth += levelsGained * 5; // Example increase
-        
         console.log(`Pokémon leveled up to level ${this._level}!`);
   this.updateLevelText();
       }
@@ -340,12 +345,54 @@ createHealthBarComponents() {
         });
     }
 
-    private evolvePokemon() {
-        if(this.evolutionLevel===this._level)
-        {
-            
+
+    getPokemonDetailsByName(name: string): Pokemon | null {
+        return POKEMON_DATA[name.toUpperCase()] || null;
+     }
+     
+
+    evolvePokemon() {
+        if (this.evolutionLevel !== null && this._level >= this.evolutionLevel) {
+            if (this.evolveTo) {
+                console.log(`${this.name} is evolving into ${this.evolveTo}!`);
+    
+                // Fetch evolved Pokémon details from data manager or predefined data
+                const evolvedPokemon = this.getPokemonDetailsByName(this.evolveTo);
+    
+                if (evolvedPokemon) {
+                    // Switch to the evolved Pokémon
+                    this.replacePokemon(evolvedPokemon);
+    
+                    // Reset experience for the new Pokémon
+                    this._experience = 0;
+                    this._experienceToNextLevel = this.calculateExperienceToNextLevel(this._level);
+    
+                    console.log(`${this.name} has successfully evolved!`);
+                } else {
+                    console.error(`Failed to find details for evolved Pokémon: ${this.evolveTo}`);
+                }
+            } else {
+                console.error(`${this.name} does not have a valid evolution target.`);
+            }
+        } else {
+            console.log(`${this.name} has not met the required level (${this.evolutionLevel}) for evolution.`);
         }
     }
+
+    replacePokemon(pokemonDetails: Pokemon) {
+
+         
+         
+        const playerTeam = dataManager.getPlayerTeam();
+        const index = playerTeam.findIndex(p => p.name === this.name);
+        this.switchPokemon(pokemonDetails);
+        if (index !== -1) {
+          dataManager.replacePokemon(index, pokemonDetails);
+        }
+
+    
+     }
+    
 }
     
 
