@@ -15,6 +15,8 @@ export interface Pokemon {
    spriteKeyFront?: string; // Make this optional
    spriteKeyBack?: string; // Make this optional
    moves?: []; // Make this optional
+   evolvesTo: string; // Make this optional
+   evolutionLevel: number; // Make this optional
  }
 export interface BattlePokemonConfig {
    scene: Phaser.Scene;
