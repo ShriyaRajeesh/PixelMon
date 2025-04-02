@@ -96,7 +96,7 @@ export class BattleMenu {
  
   // Modify chooseMainBattleOption to handle catch attempt
   private chooseMainBattleOption() {
-    console.log(this.activeBattleMenu);
+    // console.log(this.activeBattleMenu);
 
     this.hideMainBattleMenu();
 
@@ -105,19 +105,19 @@ export class BattleMenu {
         // this.hideMainBattleMenu();
         this.ShowPokemonAttackMenu();
         this.addText();
-        console.log(this.activeBattleMenu);
+        // console.log(this.activeBattleMenu);
         return;
       }
 
       if (this.selectedBattleMenuOption === BATTLE_MENU_OPTIONS.RUN) {
-        console.log(this.selectedBattleMenuOption);
+        // console.log(this.selectedBattleMenuOption);
         this.activeBattleMenu = ACTIVE_BATTLE_MENU.RUN;
         this.runattempt = true;
         return;
       }
 
       if (this.selectedBattleMenuOption === BATTLE_MENU_OPTIONS.SWITCH) {
-        console.log(this.selectedBattleMenuOption);
+        // console.log(this.selectedBattleMenuOption);
         this.activeBattleMenu = ACTIVE_BATTLE_MENU.SWITCH;
         this.switchPokemon = true;
         return;
@@ -571,7 +571,7 @@ export class BattleMenu {
     private ChosenAttack(){
         
         this.activeBattleMenu=ACTIVE_BATTLE_MENU.BATTLE_MOVE_SELECT;
-        console.log(this.activeBattleMenu);
+        // console.log(this.activeBattleMenu);
         let SelectedAttackIndex =0 ;
         switch(this.selectedMove){
             case MOVES_LIST.MOVE_1:
@@ -591,7 +591,7 @@ export class BattleMenu {
 
         }
         this.SelectedAttackIndex = SelectedAttackIndex
-        console.log(this.SelectedAttackIndex);
+        // console.log(this.SelectedAttackIndex);
 
     }
 
