@@ -27,7 +27,8 @@ const BATTLE_STATES = Object.freeze({
     FINISHED : 'FINISHED' ,// battle finish knock out the opp
     FLEE_ATTEMPT : 'FLEE_ATTEMPT', //run away
     SWITCH_POKEMON : 'SWITCH_POKEMON',
-    CATCH_POKEMON:'CATCH_POKEMON'
+    CATCH_POKEMON:'CATCH_POKEMON',
+    EVOLUTION:'EVOLUTION'
 }) 
 
 export default class scene2 extends Phaser.Scene {
@@ -41,7 +42,7 @@ export default class scene2 extends Phaser.Scene {
     private switchingActivePokemon !:boolean;
     private team !:Pokemon[];
     private mainPlayer!:Player;
-    private opponentData!:Pokemon;
+    private opponentData:Pokemon;
     private callResolved: number = 0;
     private OpponentMove!: Attack;
     private opponentTeam!: Pokemon[];
@@ -60,12 +61,14 @@ export default class scene2 extends Phaser.Scene {
         super("scene2");
     }
 
+
     init(){
         this.activePlayerAttackIndex=-1;
         this.switchingActivePokemon = false;
         this.keys =  Object.keys(POKEMON) as Array<keyof typeof POKEMON>;
         this.randomIndex = Math.floor(Math.random() * this.keys.length);
         this.OPPONENT = this.keys[this.randomIndex];
+    
     
     }
 
@@ -96,6 +99,7 @@ export default class scene2 extends Phaser.Scene {
 
     create(data: { player?: any, opponentTeam?: Pokemon[] }) {
     
+    
 
         this.mainPlayer=data.player;
         this.team = data.player.getPokemonTeam();
@@ -103,11 +107,15 @@ export default class scene2 extends Phaser.Scene {
 
         if (firstAlivePokemon) {
             this.PLAYER = firstAlivePokemon;
+            this.PLAYER = firstAlivePokemon;
         } else {
             console.log("No pokemon left ")
             // this.PLAYER= this.team[0]
         }
 
+
+        this.playerDamageDealt=[0,0,0,0,0,0];
+        this.OpponentDamageDealt=[0,0,0,0,0,0];
 
         this.playerDamageDealt=[0,0,0,0,0,0];
         this.OpponentDamageDealt=[0,0,0,0,0,0];
@@ -132,7 +140,9 @@ export default class scene2 extends Phaser.Scene {
                 assetFrame: this.PLAYER.assetFrame,
                 currentLevel: this.PLAYER.currentLevel,
                 experience:this.PLAYER.experience,
-                catchRate:this.PLAYER.catchRate
+                catchRate:this.PLAYER.catchRate,
+                evolvesTo:this.PLAYER.evolvesTo,
+                evolutionLevel:this.PLAYER.evolutionLevel
             },
         });
 
@@ -165,7 +175,10 @@ export default class scene2 extends Phaser.Scene {
                     type: this.opponentTeam[0].type,
                     currentLevel: this.opponentTeam[0].currentLevel,
                     experience: this.opponentTeam[0].experience,
-                    catchRate: this.opponentTeam[0].catchRate
+                    catchRate: this.opponentTeam[0].catchRate,
+                    evolvesTo: this.opponentTeam[0].evolvesTo,
+                    evolutionLevel: this.opponentTeam[0].evolutionLevel
+
                 } 
             });
             
@@ -189,7 +202,9 @@ export default class scene2 extends Phaser.Scene {
                     type: this.opponentData.type,
                     currentLevel: this.opponentData.currentLevel,
                     experience: this.opponentData.experience,
-                    catchRate: this.opponentData.catchRate
+                    catchRate: this.opponentData.catchRate,
+                    evolvesTo: this.opponentData.evolvesTo,
+                    evolutionLevel: this.opponentData.evolutionLevel
                 }
             });
         }
@@ -370,6 +385,21 @@ export default class scene2 extends Phaser.Scene {
             name : BATTLE_STATES.FINISHED ,   
             onEnter: ()=> {
                 this.transitionNextScene();
+            } 
+        }); 
+
+        this.battleStateMachine.addState({
+            name : BATTLE_STATES.EVOLUTION,   
+            onEnter: ()=> {
+                this.battlemenu.updateInfoPaneMsgsWithoutPlayerInput([` ${this.activePlayerPokemon.name} is evolving!`,
+                    `It evolved into ${this.activePlayerPokemon.evolveTo}!`,],
+                    ()=>{
+                        
+                        this.battleStateMachine.setState(BATTLE_STATES.FINISHED);
+                    }
+                );
+                
+                this.activePlayerPokemon.evolvePokemon();
             } 
         }); 
 
@@ -781,16 +811,33 @@ private postBattleCheck() {
         this.activePlayerPokemon.addExperience(experienceGained);
     
         if (this.activePlayerPokemon.level > prevlevel) {
+            if(this.activePlayerPokemon.level>= this.activePlayerPokemon.evolutionLevel){
             this.battlemenu.updateInfoPaneMsgsWaitForPlayerInput(
             [
                 `Wild ${this.activeOpponentPokemon.name} Fainted `,
                 `${this.activePlayerPokemon.name} gained Experience`,
                 `${this.activePlayerPokemon.name} leveled up to level ${this.activePlayerPokemon.level}!`,
+                
             ],
-            () => {
-                this.battleStateMachine.setState(BATTLE_STATES.FINISHED);
-            }
+                () => {
+                    this.battleStateMachine.setState(BATTLE_STATES.EVOLUTION);
+                }
             );
+        }
+        else
+            {
+                this.battlemenu.updateInfoPaneMsgsWaitForPlayerInput(
+                    [
+                        `Wild ${this.activeOpponentPokemon.name} Fainted `,
+                        `${this.activePlayerPokemon.name} gained Experience`,
+                        `${this.activePlayerPokemon.name} leveled up to level ${this.activePlayerPokemon.level}!`,
+                        
+                    ],
+                        () => {
+                            this.battleStateMachine.setState(BATTLE_STATES.FINISHED);
+                        }
+                    );
+            }
         } else {
         this.battlemenu.updateInfoPaneMsgsWaitForPlayerInput(
             [` ${this.activeOpponentPokemon.name} Fainted `, `${this.activePlayerPokemon.name} gained Experience`],

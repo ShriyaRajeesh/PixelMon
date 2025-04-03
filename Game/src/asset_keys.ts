@@ -1,63 +1,63 @@
 export const POKEMON = Object.freeze({
     BULBASAUR: 'bulbasaur' as string,
     // IVYSAUR: 'ivysaur' as string,
-    // VENUSAUR: 'venusaur' as string,
+    VENUSAUR: 'venusaur' as string,
 
     CHARMANDER: 'charmander' as string,
-    // CHARMELEON: 'charmeleon' as string,
-    // CHARIZARD: 'charizard' as string,
+    //  CHARMELEON: 'charmeleon' as string,
+    //  CHARIZARD: 'charizard' as string,
 
     CHIKORITA: 'chikorita' as string,
-    // BAYLEEF: 'bayleef' as string,
+    //BAYLEEF: 'bayleef' as string,
     // MEGANIUM: 'meganium' as string,
 
     CUBONE: 'cubone' as string,
-    // MAROWAK: 'marowak' as string,
+    //  MAROWAK: 'marowak' as string,
 
     ELECTRIKE: 'electrike' as string,
-    // MANECTRIC: 'manectric' as string,
+    //  MANECTRIC: 'manectric' as string,
 
     GEODUDE: 'geodude' as string,
-    // GRAVELER: 'graveler' as string,
-    // GOLEM: 'golem' as string,
+     GRAVELER: 'graveler' as string,
+     GOLEM: 'golem' as string,
 
     GROWLITHE: 'growlithe' as string,
-    // ARCANINE: 'arcanine' as string,
+     ARCANINE: 'arcanine' as string,
 
     MAGNEMITE: 'magnemite' as string,
     // MAGNETON: 'magneton' as string,
     // MAGNEZONE: 'magnezone' as string,
 
     MEOWTH: 'meowth' as string,
-    // PERSIAN: 'persian' as string,
+     PERSIAN: 'persian' as string,
 
     ODDISH: 'oddish' as string,
-    // GLOOM: 'gloom' as string,
-    // VILEPLUME: 'vileplume' as string,
-    // BELLOSSOM: 'bellossom' as string,
+    //  GLOOM: 'gloom' as string,
+    //  VILEPLUME: 'vileplume' as string,
+    //  BELLOSSOM: 'bellossom' as string,
 
     PIDGEY: 'pidgey' as string,
-    // PIDGEOTTO: 'pidgeotto' as string,
-    // PIDGEOT: 'pidgeot' as string,
+     PIDGEOTTO: 'pidgeotto' as string,
+    //  PIDGEOT: 'pidgeot' as string,
 
     PIKACHU: 'pikachu' as string,
     // RAICHU: 'raichu' as string,
 
-    PSYDUCK: 'psyduck' as string,
-    // GOLDUCK: 'golduck' as string,
+    // PSYDUCK: 'psyduck' as string,
+    //  GOLDUCK: 'golduck' as string,
 
-    // RATTATA: 'rattata' as string,
-    // RATICATE: 'raticate' as string,
+    //  RATTATA: 'rattata' as string,
+    //  RATICATE: 'raticate' as string,
 
-    SANDSHREW: 'sandshrew' as string,
-    // SANDSLASH: 'sandslash' as string,
+    // SANDSHREW: 'sandshrew' as string,
+    //  SANDSLASH: 'sandslash' as string,
 
     SQUIRTLE: 'squirtle' as string,
-    // WARTORTLE: 'wartortle' as string,
-    // BLASTOISE: 'blastoise' as string,
+    //  WARTORTLE: 'wartortle' as string,
+    //  BLASTOISE: 'blastoise' as string,
 
-    // VULPIX: 'vulpix' as string,
-    // NINETALES: 'ninetales' as string
+    //  VULPIX: 'vulpix' as string,
+    //  NINETALES: 'ninetales' as string
 });
 
 
