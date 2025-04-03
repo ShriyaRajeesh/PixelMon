@@ -451,5 +451,3 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     evolutionLevel:100000,
   },
 };
-
-  // Add similar structure for other Pokémon…
