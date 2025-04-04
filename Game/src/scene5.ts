@@ -136,11 +136,11 @@ export default class scene5 extends Phaser.Scene {
         container.add(detailsBox);
 
         // Add the text
-        const text = this.add.text(320, 250, `Choose ${pokemonName}?`, { fontSize: "16px", color: "#fff" }).setDepth(6);
+        const text = this.add.text(320, 250, `Choose ${pokemonName}?`, { fontSize: "18px", color: "#fff" }).setDepth(6);
         container.add(text);
 
         // Display Pokémon sprite
-        const pokemonSprite = this.add.sprite(400, 300, `${pokemonName}_front`).setDepth(6).setScale(2);
+        const pokemonSprite = this.add.sprite(400, 350, `${pokemonName}_front`).setDepth(6).setScale(2);
         container.add(pokemonSprite);
 
         // Create animation if it doesn't exist yet

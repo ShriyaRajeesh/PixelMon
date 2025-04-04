@@ -70,7 +70,7 @@ export default class scene1 extends Phaser.Scene
         // Start the next scene when the "Enter" key is pressed
         enterKey.on("down", () => {
             if (this.scene) {
-                this.scene.start("scene4");
+                // this.scene.start("scene4");
             } else {
                 console.error("Scene Manager is not available.");
             }
