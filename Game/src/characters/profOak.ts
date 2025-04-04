@@ -41,7 +41,7 @@ export class ProfessorOak extends Character {
         const dialogue = this.dialogueQueue.shift();
         this.scene.events.emit("showDialogue", dialogue?.speaker, dialogue?.text);
 
-        this.scene.time.delayedCall(1500, () => {
+        this.scene.time.delayedCall(150, () => {
             this.showNextDialogue(onComplete);
         });
     }

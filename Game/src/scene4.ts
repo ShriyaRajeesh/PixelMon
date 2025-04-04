@@ -166,7 +166,7 @@ export default class scene4 extends Phaser.Scene {
 
         this.wildPokemonEncountered = Math.random() < 0.2;
         if (this.wildPokemonEncountered) {
-            this.cameras.main.fadeOut(2000);
+            this.cameras.main.fadeOut(500);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
                 this.player.getPokemonTeam().forEach(pokemon => {
                     console.log(`${pokemon.name}: ${pokemon.currentHp} HP`);
