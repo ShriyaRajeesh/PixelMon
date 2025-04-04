@@ -42,7 +42,7 @@ export default class scene2 extends Phaser.Scene {
     private switchingActivePokemon !:boolean;
     private team !:Pokemon[];
     private mainPlayer!:Player;
-    private opponentData:Pokemon;
+    private opponentData!:Pokemon;
     private callResolved: number = 0;
     private OpponentMove!: Attack;
     private opponentTeam!: Pokemon[];
@@ -51,7 +51,7 @@ export default class scene2 extends Phaser.Scene {
     private keys:any ;
     private randomIndex !:number; 
     private OPPONENT!:string ;
-    private PLAYER = PLAYER_POKEMON_TEAM[0];
+    private PLAYER:Pokemon = PLAYER_POKEMON_TEAM[0];
     private flag:boolean = false;
     private i:number=0;
 
