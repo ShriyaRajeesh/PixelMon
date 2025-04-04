@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import "./style.css";
 import { PLAYER_POKEMON_TEAM } from "./player-pokemon-list";
-import { BATTLE_ASSET_KEYS, CHARACTER_ASSET_KEYS, LAB_ASSET_KEYS, WORLD_ASSET_KEYS } from "./asset_keys";
+import { BATTLE_ASSET_KEYS, CHARACTER_ASSET_KEYS, LAB_ASSET_KEYS, RESTORE, WORLD_ASSET_KEYS } from "./asset_keys";
 import { POKEMON_DATA } from "./pokemon-data";
 
 
@@ -43,6 +43,7 @@ export default class scene1 extends Phaser.Scene
         this.load.image(CHARACTER_ASSET_KEYS.OAK,"src/assets/player/profOak.png");
         //loading pokeball
         this.load.image(BATTLE_ASSET_KEYS.POKEBALL, "src/assets/images/pokeball.png")
+        this.load.atlas(RESTORE.HEART,"src/assets/heart/heart.png","src/assets/heart/heart.json");
     }
     create() {
         this.add.image(480, 270, "startscreen"); // Add the image

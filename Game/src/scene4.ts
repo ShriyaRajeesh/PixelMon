@@ -1,5 +1,5 @@
-import Phaser from "phaser";
-import { DATA_ASSET_KEYS, WORLD_ASSET_KEYS } from "./asset_keys";
+    import Phaser from "phaser";
+import { DATA_ASSET_KEYS, RESTORE, WORLD_ASSET_KEYS } from "./asset_keys";
 import { Player } from "./characters/player";
 import { Coordinate } from "./typedef";
 import { Controls } from "./controls";
@@ -14,6 +14,8 @@ import { ProfessorOak } from "./characters/profOak";
 import { DialogueBox } from "./dialogue";
 
 const TILE_SIZE=64;
+const HPX=[11 , 23 , 48  ];
+const HPY=[9.5, 6.5 , 19];
 
 export default class scene4 extends Phaser.Scene {
     private player!: Player;
@@ -30,19 +32,26 @@ export default class scene4 extends Phaser.Scene {
         POKEMON_DATA.GEODUDE,
         // Add more Pokémon here
     ];
+    private heartSprites! : Phaser.GameObjects[];
 
     constructor() {
         super("scene4");
         this.playerTeam = [];
+        this.heartSprites = [];
     }
     preload() {
     }
     
     init() {
         this.wildPokemonEncountered = false;
+
     }
 
     create() {
+    
+        
+        // Create the animation once
+       
         this.cameras.main.setBounds(0, 0, 3200, 2176);
         this.cameras.main.setZoom(0.8);
         // this.cameras.main.centerOn(x,y);
@@ -62,8 +71,31 @@ export default class scene4 extends Phaser.Scene {
 
         // collisionlayer?.setDepth(2);
         // this.encounterLayer?.setDepth(2);
-
+       
         this.add.image(0, 0, WORLD_ASSET_KEYS.PALLET_TOWN, 0).setOrigin(0);
+
+        this.anims.create({
+            key: RESTORE.HEART,
+            frames: this.anims.generateFrameNames(RESTORE.HEART),
+            frameRate: 5,
+            repeat: -1,
+        });
+        
+        for (let i = 0; i < HPX.length; i++) {
+            const x = TILE_SIZE * HPX[i];
+            const y = TILE_SIZE * HPY[i];
+        
+            const heartSprite = this.add.sprite(x, y, RESTORE.HEART).setScale(0.25);
+            heartSprite.play(RESTORE.HEART);
+        
+            this.heartSprites.push({
+                sprite: heartSprite,
+                x: x,
+                y: y,
+                collected: false,
+            });
+        }
+
         this.player = new Player({
             scene: this,
             position: dataManager.storeData.get(DATA_MANAGER_KEYS.PLAYER_POSTION),
@@ -73,12 +105,15 @@ export default class scene4 extends Phaser.Scene {
                 this.handlePlayerMovementUpdate();
             }
         });
+
+       
         
         this.cameras.main.startFollow(this.player.sprite);
         this.add.image(0, 0, WORLD_ASSET_KEYS.PALLET_FOREGROUND, 0).setOrigin(0);
 
         this.controls = new Controls(this);
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+        
 
         // Create NPC instance
         this.npc = new Npc(this, { x: 300, y: 300 });
@@ -89,6 +124,7 @@ export default class scene4 extends Phaser.Scene {
             this.dialogueBox.hideDialogue();
             this.player.unlockMovement();
         });
+    //   c
         
     }
 
@@ -148,6 +184,7 @@ export default class scene4 extends Phaser.Scene {
     const minY = 17 * TILE_SIZE;
     const maxY = 17 * TILE_SIZE;
 
+    
     // Check if the player is within the range and has no Pokémon
     if (
         this.player.getPokemonTeam().length === 0 &&
@@ -157,14 +194,35 @@ export default class scene4 extends Phaser.Scene {
         this.triggerProfessorOakEvent();
         return;
     }
+    const COLLISION_RADIUS = TILE_SIZE * 0.5;
 
+for (let i = 0; i < this.heartSprites.length; i++) {
+    const heart = this.heartSprites[i];
+
+    if (heart.collected) continue; // skip already collected
+
+    const hpXmin = heart.x - COLLISION_RADIUS;
+    const hpXmax = heart.x + COLLISION_RADIUS;
+    const hpYmin = heart.y - COLLISION_RADIUS;
+    const hpYmax = heart.y + COLLISION_RADIUS;
+
+    if (
+        playerX >= hpXmin && playerX <= hpXmax &&
+        playerY >= hpYmin && playerY <= hpYmax
+    ) {
+        this.restoreHp(); // Heal the player
+        heart.sprite.destroy(); // Remove the heart
+        heart.collected = true; // Mark as collected
+        return;
+    }
+}
     // Check if the player is in an encounter zone
     const isInEncounterZone = this.encounterLayer.getTileAtWorldXY(playerX, playerY, true).index !== -1;
     if (!isInEncounterZone) {
         return;
     }
 
-        this.wildPokemonEncountered = Math.random() < 0.2;
+        this.wildPokemonEncountered = Math.random() < 0.4;
         if (this.wildPokemonEncountered) {
             this.cameras.main.fadeOut(500);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
@@ -231,6 +289,11 @@ export default class scene4 extends Phaser.Scene {
         } else {
         console.error('Missing player or opponentTeam');
         }
+    }
+    private restoreHp() {
+        this.player.getPokemonTeam().forEach(pokemon => {
+            pokemon.currentHp = pokemon.maxHp;
+        });
     }
     
 }

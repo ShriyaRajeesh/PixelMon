@@ -80,6 +80,10 @@ export const DATA_ASSET_KEYS = Object.freeze({
 
 })
 
+export const RESTORE= Object.freeze({
+    HEART : 'HEART'
+})
+
 export const BATTLE_ASSET_KEYS = Object.freeze({
     POKEBALL: 'POKEBALL'
 });
