@@ -100,5 +100,53 @@
         "name": "Rock Slide",
         "animationName": "ROCK_SLIDE",
         "type": "ROCK"
-    }
+    },
+     {
+    "id": 18,
+    "name": "Petal Dance",
+    "animationName": "PETAL_DANCE",
+    "type": "GRASS"
+  },
+  {
+    "id": 19,
+    "name": "Confusion",
+    "animationName": "CONFUSION",
+    "type": "PSYCHIC"
+  },
+  {
+    "id": 20,
+    "name": "Hydro Pump",
+    "animationName": "HYDRO_PUMP",
+    "type": "WATER"
+  },
+  {
+    "id": 21,
+    "name": "Solar Beam",
+    "animationName": "SOLAR_BEAM",
+    "type": "GRASS"
+  },
+  {
+    "id": 22,
+    "name": "Sludge Bomb",
+    "animationName": "SLUDGE_BOMB",
+    "type": "POISON"
+  },
+  {
+    "id": 23,
+    "name": "Psychic",
+    "animationName": "PSYCHIC",
+    "type": "PSYCHIC"
+  },
+  {
+    "id": 24,
+    "name": "Flamethrower",
+    "animationName": "FLAMETHROWER",
+    "type": "FIRE"
+  },
+  {
+    "id": 25,
+    "name": "Ice Beam",
+    "animationName": "ICE_BEAM",
+    "type": "ICE"
+  }
 ]
