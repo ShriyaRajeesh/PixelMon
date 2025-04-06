@@ -297,7 +297,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     catchRate: 190,
     experience: 0,
     evolvesTo: "RAICHU", // Evolves using Thunder Stone
-    evolutionLevel:9,
+    evolutionLevel:20,
   },
   RAICHU: {
     PokemonId: 37,
