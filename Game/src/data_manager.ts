@@ -80,6 +80,27 @@ class DataManager extends Phaser.Events.EventEmitter{
               this.updatePlayerTeam(team);
             }
           }
+          replacePokemon(index : number, pokemondetails: Pokemon)
+          {
+                let team=this.getPlayerTeam();
+                team[index].PokemonId=pokemondetails.PokemonId;
+                team[index].assetFrame=pokemondetails.assetFrame;
+                team[index].assetKey=pokemondetails.assetKey;
+                team[index].attackIds=pokemondetails.attackIds;
+                team[index].baseAttack=pokemondetails.baseAttack;
+                team[index].catchRate=pokemondetails.catchRate;
+                team[index].currentHp=pokemondetails.currentHp;
+                team[index].currentLevel=pokemondetails.currentLevel;
+                team[index].evolutionLevel=pokemondetails.evolutionLevel;
+                team[index].evolvesTo=pokemondetails.evolvesTo;
+                team[index].experience=pokemondetails.experience;
+                team[index].maxHp=pokemondetails.maxHp;
+                team[index].name=pokemondetails.name;
+                team[index].spriteKeyBack=pokemondetails.spriteKeyBack;
+                team[index].spriteKeyFront=pokemondetails.spriteKeyFront;
+                team[index].type=pokemondetails.type;
+                team[index].level=pokemondetails.level;
+          }
     }
 
 

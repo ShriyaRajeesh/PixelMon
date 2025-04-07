@@ -28,7 +28,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 18,
     maxHp: 55,
     currentHp: 55,
-    attackIds: [5, 11, 1, 3],
+    attackIds: [5, 11, 1, 3], // Tackle, Quick Attack, Growl, Tail Whip
     currentLevel: 22,
     catchRate: 127,
     experience: 0,
@@ -44,7 +44,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 12,
     maxHp: 40,
     currentHp: 40,
-    attackIds: [1, 3, 5, 8], // Growl, Tail Whip, Tackle, Water Gun
+    attackIds: [5, 11, 1, 3], // Tackle, Quick Attack, Growl, Tail Whip
     currentLevel: 5,
     catchRate: 255,
     experience: 0,
@@ -60,7 +60,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 20,
     maxHp: 65,
     currentHp: 65,
-    attackIds: [1, 3, 5, 8],
+    attackIds: [5, 11, 1, 3], // Tackle, Quick Attack, Growl, Tail Whip
     currentLevel: 28,
     catchRate: 90,
     experience: 0,
@@ -94,7 +94,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 20,
     maxHp: 75,
     currentHp: 75,
-    attackIds: [5, 7, 14, 11],
+    attackIds: [5, 7, 14, 17], // Tackle, Sand Attack, Mud Shot, Rock Slide
     currentLevel: 22,
     catchRate: 45,
     experience: 0,
@@ -110,29 +110,29 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 14,
     maxHp: 50,
     currentHp: 50,
-    attackIds: [5, 7, 14, 3], // Tackle, Sand Attack, Mud Shot, Tail Whip
+    attackIds: [5, 7, 14, 10], // Tackle, Sand Attack, Mud Shot, Rock Throw
     currentLevel: 5,
     catchRate: 35,
     experience: 0,
     evolvesTo: "MAROWAK",
-    evolutionLevel: 28,
+    evolutionLevel: 100,
   },
-  MAROWAK: {
-    PokemonId: 28,
-    name: "marowak",
-    assetKey: POKEMON.MAROWAK,
-    assetFrame: 0,
-    type: "GROUND",
-    baseAttack: 18,
-    maxHp: 60,
-    currentHp: 60,
-    attackIds: [5, 7, 14, 3],
-    currentLevel: 28,
-    catchRate: 35,
-    experience: 0,
-    evolvesTo: "MAROWAK",
-    evolutionLevel: 100000,
-  },
+  // MAROWAK: {
+  //   PokemonId: 28,
+  //   name: "marowak",
+  //   assetKey: POKEMON.MAROWAK,
+  //   assetFrame: 0,
+  //   type: "GROUND",
+  //   baseAttack: 18,
+  //   maxHp: 60,
+  //   currentHp: 60,
+  //   attackIds: [5, 7, 14, 17], // Tackle, Sand Attack, Mud Shot, Rock Slide
+  //   currentLevel: 28,
+  //   catchRate: 35,
+  //   experience: 0,
+  //   evolvesTo: "MAROWAK",
+  //   evolutionLevel: 100000,
+  // },
 
   // Rock Type Pokemon
   GEODUDE: {
@@ -144,7 +144,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 16,
     maxHp: 40,
     currentHp: 40,
-    attackIds: [10, 17, 5, 1], // Rock Throw, Rock Slide, Tackle, Growl
+    attackIds: [10, 17, 5, 7], // Rock Throw, Rock Slide, Tackle, Sand Attack
     currentLevel: 5,
     catchRate: 40,
     experience: 0,
@@ -160,7 +160,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 22,
     maxHp: 60,
     currentHp: 60,
-    attackIds: [10, 17, 5, 1],
+    attackIds: [10, 17, 5, 7], // Rock Throw, Rock Slide, Tackle, Sand Attack
     currentLevel: 25,
     catchRate: 40,
     experience: 0,
@@ -176,7 +176,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 28,
     maxHp: 80,
     currentHp: 80,
-    attackIds: [10, 17, 5, 1],
+    attackIds: [10, 17, 5, 7], // Rock Throw, Rock Slide, Tackle, Sand Attack
     currentLevel: 30,
     catchRate: 30,
     experience: 0,
@@ -194,7 +194,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 13,
     maxHp: 44,
     currentHp: 44,
-    attackIds: [8, 15, 5, 11], // Water Gun, Bubble, Tackle, Quick Attack
+    attackIds: [8, 15, 20, 5], // Water Gun, Bubble, Hydro Pump, Tackle
     currentLevel: 5,
     catchRate: 45,
     experience: 0,
@@ -210,14 +210,13 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 18,
     maxHp: 59,
     currentHp: 59,
-    attackIds: [8, 15, 5, 11],
+    attackIds: [8, 15, 20, 5], // Water Gun, Bubble, Hydro Pump, Tackle
     currentLevel: 16,
     catchRate: 45,
     experience: 0,
     evolvesTo: "BLASTOISE",
     evolutionLevel: 36,
   },
-  
   BLASTOISE: {
     PokemonId: 30,
     name: "blastoise",
@@ -227,7 +226,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 25,
     maxHp: 79,
     currentHp: 79,
-    attackIds: [8, 15, 5, 11],
+    attackIds: [8, 15, 20, 5], // Water Gun, Bubble, Hydro Pump, Tackle
     currentLevel: 36,
     catchRate: 45,
     experience: 0,
@@ -243,7 +242,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 14,
     maxHp: 50,
     currentHp: 50,
-    attackIds: [8, 15, 19, 20], // Water Gun, Bubble, Confusion, Hydro Pump
+    attackIds: [8, 19, 20, 23], // Water Gun, Confusion, Hydro Pump, Psychic
     currentLevel: 5,
     catchRate: 190,
     experience: 0,
@@ -259,7 +258,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 22,
     maxHp: 80,
     currentHp: 80,
-    attackIds: [8, 15, 19, 20],
+    attackIds: [8, 19, 20, 23], // Water Gun, Confusion, Hydro Pump, Psychic
     currentLevel: 33,
     catchRate: 75,
     experience: 0,
@@ -277,7 +276,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 14,
     maxHp: 39,
     currentHp: 39,
-    attackIds: [9, 16, 5, 11], // Ember, Fire Spin, Tackle, Quick Attack
+    attackIds: [9, 16, 24, 5], // Ember, Fire Spin, Flamethrower, Tackle
     currentLevel: 5,
     catchRate: 45,
     experience: 0,
@@ -293,7 +292,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 18,
     maxHp: 58,
     currentHp: 58,
-    attackIds: [9, 16, 5, 11],
+    attackIds: [9, 16, 24, 5], // Ember, Fire Spin, Flamethrower, Tackle
     currentLevel: 16,
     catchRate: 45,
     experience: 0,
@@ -309,7 +308,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 25,
     maxHp: 78,
     currentHp: 78,
-    attackIds: [9, 16, 5, 11],
+    attackIds: [9, 16, 24, 5], // Ember, Fire Spin, Flamethrower, Tackle
     currentLevel: 36,
     catchRate: 45,
     experience: 0,
@@ -325,7 +324,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 15,
     maxHp: 38,
     currentHp: 38,
-    attackIds: [9, 16, 5, 10], // Ember, Fire Spin, Tackle, Rock Throw
+    attackIds: [9, 16, 24, 19], // Ember, Fire Spin, Flamethrower, Confusion
     currentLevel: 5,
     catchRate: 190,
     experience: 0,
@@ -341,7 +340,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 24,
     maxHp: 73,
     currentHp: 73,
-    attackIds: [9, 16, 5, 10],
+    attackIds: [9, 16, 24, 19], // Ember, Fire Spin, Flamethrower, Confusion
     currentLevel: 16,
     catchRate: 75,
     experience: 0,
@@ -357,7 +356,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 15,
     maxHp: 55,
     currentHp: 55,
-    attackIds: [9, 16, 5, 11], // Ember, Fire Spin, Tackle, Quick Attack
+    attackIds: [9, 16, 24, 5], // Ember, Fire Spin, Flamethrower, Tackle
     currentLevel: 5,
     catchRate: 190,
     experience: 0,
@@ -373,7 +372,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 25,
     maxHp: 90,
     currentHp: 90,
-    attackIds: [9, 16, 5, 11],
+    attackIds: [9, 16, 24, 5], // Ember, Fire Spin, Flamethrower, Tackle
     currentLevel: 20,
     catchRate: 75,
     experience: 0,
@@ -391,12 +390,12 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 14,
     maxHp: 45,
     currentHp: 45,
-    attackIds: [4, 12, 5, 8], // Thunder Wave, Thunderbolt, Tackle, Water Gun
+    attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
     currentLevel: 5,
     catchRate: 45,
     experience: 0,
     evolvesTo: "IVYSAUR",
-    evolutionLevel: 16,
+    evolutionLevel: 9,
   },
   IVYSAUR: {
     PokemonId: 34,
@@ -407,7 +406,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 18,
     maxHp: 60,
     currentHp: 60,
-    attackIds: [4, 12, 5, 8],
+    attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
     currentLevel: 16,
     catchRate: 45,
     experience: 0,
@@ -423,7 +422,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 25,
     maxHp: 80,
     currentHp: 80,
-    attackIds: [4, 12, 5, 8],
+    attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
     currentLevel: 32,
     catchRate: 45,
     experience: 0,
@@ -439,45 +438,45 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 14,
     maxHp: 45,
     currentHp: 45,
-    attackIds: [4, 6, 5, 13], // Thunder Wave, Vine Whip, Tackle, Razor Leaf
+    attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
     currentLevel: 5,
     catchRate: 45,
     experience: 0,
     evolvesTo: "BAYLEEF",
     evolutionLevel: 16,
   },
-  BAYLEEF: {
-    PokemonId: 48,
-    name: "bayleef",
-    assetKey: POKEMON.BAYLEEF,
-    assetFrame: 0,
-    type: "GRASS",
-    baseAttack: 18,
-    maxHp: 60,
-    currentHp: 60,
-    attackIds: [4, 6, 5, 13],
-    currentLevel: 16,
-    catchRate: 45,
-    experience: 0,
-    evolvesTo: "MEGANIUM",
-    evolutionLevel: 32,
-  },
-  MEGANIUM: {
-    PokemonId: 49,
-    name: "meganium",
-    assetKey: POKEMON.MEGANIUM,
-    assetFrame: 0,
-    type: "GRASS",
-    baseAttack: 24,
-    maxHp: 80,
-    currentHp: 80,
-    attackIds: [4, 6, 5, 13],
-    currentLevel: 32,
-    catchRate: 45,
-    experience: 0,
-    evolvesTo: "MEGANIUM",
-    evolutionLevel: 100000,
-  },
+  // BAYLEEF: {
+  //   PokemonId: 48,
+  //   name: "bayleef",
+  //   assetKey: POKEMON.BAYLEEF,
+  //   assetFrame: 0,
+  //   type: "GRASS",
+  //   baseAttack: 18,
+  //   maxHp: 60,
+  //   currentHp: 60,
+  //   attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
+  //   currentLevel: 16,
+  //   catchRate: 45,
+  //   experience: 0,
+  //   evolvesTo: "MEGANIUM",
+  //   evolutionLevel: 32,
+  // },
+  // MEGANIUM: {
+  //   PokemonId: 49,
+  //   name: "meganium",
+  //   assetKey: POKEMON.MEGANIUM,
+  //   assetFrame: 0,
+  //   type: "GRASS",
+  //   baseAttack: 24,
+  //   maxHp: 80,
+  //   currentHp: 80,
+  //   attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
+  //   currentLevel: 32,
+  //   catchRate: 45,
+  //   experience: 0,
+  //   evolvesTo: "MEGANIUM",
+  //   evolutionLevel: 100000,
+  // },
   ODDISH: {
     PokemonId: 55,
     name: "oddish",
@@ -487,7 +486,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 13,
     maxHp: 45,
     currentHp: 45,
-    attackIds: [4, 6, 13, 18], // Thunder Wave, Vine Whip, Razor Leaf, Petal Dance
+    attackIds: [6, 13, 18, 22], // Vine Whip, Razor Leaf, Petal Dance, Sludge Bomb
     currentLevel: 5,
     catchRate: 255,
     experience: 0,
@@ -503,7 +502,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 17,
     maxHp: 60,
     currentHp: 60,
-    attackIds: [4, 6, 13, 18],
+    attackIds: [6, 13, 18, 22], // Vine Whip, Razor Leaf, Petal Dance, Sludge Bomb
     currentLevel: 21,
     catchRate: 120,
     experience: 0,
@@ -519,29 +518,29 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 23,
     maxHp: 75,
     currentHp: 75,
-    attackIds: [4, 6, 13, 18],
+    attackIds: [6, 13, 18, 22], // Vine Whip, Razor Leaf, Petal Dance, Sludge Bomb
     currentLevel: 25,
     catchRate: 45,
     experience: 0,
     evolvesTo: "VILEPLUME",
     evolutionLevel: 100000,
   },
-  BELLOSSOM: {
-    PokemonId: 58,
-    name: "bellossom",
-    assetKey: POKEMON.BELLOSSOM,
-    assetFrame: 0,
-    type: "GRASS",
-    baseAttack: 20,
-    maxHp: 75,
-    currentHp: 75,
-    attackIds: [4, 6, 13, 18],
-    currentLevel: 25,
-    catchRate: 45,
-    experience: 0,
-    evolvesTo: "BELLOSSOM",
-    evolutionLevel: 100000,
-  },
+  // BELLOSSOM: {
+  //   PokemonId: 58,
+  //   name: "bellossom",
+  //   assetKey: POKEMON.BELLOSSOM,
+  //   assetFrame: 0,
+  //   type: "GRASS",
+  //   baseAttack: 20,
+  //   maxHp: 75,
+  //   currentHp: 75,
+  //   attackIds: [6, 13, 18, 21], // Vine Whip, Razor Leaf, Petal Dance, Solar Beam
+  //   currentLevel: 25,
+  //   catchRate: 45,
+  //   experience: 0,
+  //   evolvesTo: "BELLOSSOM",
+  //   evolutionLevel: 100000,
+  // },
 
   // Electric Type Pokemon
   PIKACHU: {
@@ -553,7 +552,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 15,
     maxHp: 35,
     currentHp: 35,
-    attackIds: [13, 15, 5, 11], // Razor Leaf, Bubble, Tackle, Quick Attack
+    attackIds: [2, 4, 12, 11], // Thunder Shock, Thunder Wave, Thunderbolt, Quick Attack
     currentLevel: 5,
     catchRate: 190,
     experience: 0,
@@ -569,7 +568,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 20,
     maxHp: 60,
     currentHp: 60,
-    attackIds: [13, 15, 5, 11],
+    attackIds: [2, 4, 12, 11], // Thunder Shock, Thunder Wave, Thunderbolt, Quick Attack
     currentLevel: 16,
     catchRate: 75,
     experience: 0,
@@ -585,29 +584,29 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 17,
     maxHp: 40,
     currentHp: 40,
-    attackIds: [13, 15, 5, 11], // Razor Leaf, Bubble, Tackle, Quick Attack
+    attackIds: [2, 4, 12, 11], // Thunder Shock, Thunder Wave, Thunderbolt, Quick Attack
     currentLevel: 5,
     catchRate: 45,
     experience: 0,
     evolvesTo: "MANECTRIC",
     evolutionLevel: 26,
   },
-  MANECTRIC: {
-    PokemonId: 39,
-    name: "manectric",
-    assetKey: POKEMON.MANECTRIC,
-    assetFrame: 0,
-    type: "ELECTRIC",
-    baseAttack: 25,
-    maxHp: 70,
-    currentHp: 70,
-    attackIds: [13, 15, 5, 11],
-    currentLevel: 26,
-    catchRate: 45,
-    experience: 0,
-    evolvesTo: "MANECTRIC",
-    evolutionLevel: 100000,
-  },
+  // MANECTRIC: {
+  //   PokemonId: 39,
+  //   name: "manectric",
+  //   assetKey: POKEMON.MANECTRIC,
+  //   assetFrame: 0,
+  //   type: "ELECTRIC",
+  //   baseAttack: 25,
+  //   maxHp: 70,
+  //   currentHp: 70,
+  //   attackIds: [2, 4, 12, 11], // Thunder Shock, Thunder Wave, Thunderbolt, Quick Attack
+  //   currentLevel: 26,
+  //   catchRate: 45,
+  //   experience: 0,
+  //   evolvesTo: "MANECTRIC",
+  //   evolutionLevel: 100000,
+  // },
   MAGNEMITE: {
     PokemonId: 52,
     name: "magnemite",
@@ -617,29 +616,29 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 14,
     maxHp: 25,
     currentHp: 25,
-    attackIds: [2, 4, 5, 12], // Thunder Shock, Thunder Wave, Tackle, Thunderbolt
+    attackIds: [2, 4, 12, 5], // Thunder Shock, Thunder Wave, Thunderbolt, Tackle
     currentLevel: 5,
     catchRate: 190,
     experience: 0,
     evolvesTo: "MAGNETON",
-    evolutionLevel: 30,
+    evolutionLevel: 100,
   },
-  MAGNETON: {
-    PokemonId: 53,
-    name: "magneton",
-    assetKey: POKEMON.MAGNETON,
-    assetFrame: 0,
-    type: "ELECTRIC",
-    baseAttack: 22,
-    maxHp: 50,
-    currentHp: 50,
-    attackIds: [2, 4, 5, 12],
-    currentLevel: 30,
-    catchRate: 120,
-    experience: 0,
-    evolvesTo: "MAGNEZONE",
-    evolutionLevel: 100000, // Special magnetic field evolution
-  },
+  // MAGNETON: {
+  //   PokemonId: 53,
+  //   name: "magneton",
+  //   assetKey: POKEMON.MAGNETON,
+  //   assetFrame: 0,
+  //   type: "ELECTRIC",
+  //   baseAttack: 22,
+  //   maxHp: 50,
+  //   currentHp: 50,
+  //   attackIds: [2, 4, 12, 5], // Thunder Shock, Thunder Wave, Thunderbolt, Tackle
+  //   currentLevel: 30,
+  //   catchRate: 120,
+  //   experience: 0,
+  //   evolvesTo: "MAGNEZONE",
+  //   evolutionLevel: 100000, // Special magnetic field evolution
+  // },
   MAGNEZONE: {
     PokemonId: 54,
     name: "magnezone",
@@ -649,7 +648,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 28,
     maxHp: 70,
     currentHp: 70,
-    attackIds: [2, 4, 5, 12],
+    attackIds: [2, 4, 12, 5], // Thunder Shock, Thunder Wave, Thunderbolt, Tackle
     currentLevel: 35,
     catchRate: 60,
     experience: 0,
@@ -667,7 +666,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 12,
     maxHp: 40,
     currentHp: 40,
-    attackIds: [2, 6, 5, 9], // Thunder Shock, Vine Whip, Tackle, Ember
+    attackIds: [5, 11, 1, 3], // Tackle, Quick Attack, Growl, Tail Whip
     currentLevel: 5,
     catchRate: 255,
     experience: 0,
@@ -683,7 +682,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 20,
     maxHp: 63,
     currentHp: 63,
-    attackIds: [2, 6, 5, 9],
+    attackIds: [5, 11, 1, 3], // Tackle, Quick Attack, Growl, Tail Whip
     currentLevel: 18,
     catchRate: 120,
     experience: 0,
@@ -699,7 +698,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     baseAttack: 25,
     maxHp: 83,
     currentHp: 83,
-    attackIds: [2, 6, 5, 9],
+    attackIds: [5, 11, 1, 3], // Tackle, Quick Attack, Growl, Tail Whip
     currentLevel: 36,
     catchRate: 45,
     experience: 0,
