@@ -1,39 +1,160 @@
 export type PokemonType = keyof typeof TYPE_EFFECTIVENESS;
 
 export const TYPE_EFFECTIVENESS = {
-    ELECTRIC: {
-        WATER: 2,    // Electric is super effective vs Water
-        ROCK: 0.5,   // Electric is not very effective vs Rock
-        GROUND: 0.5,   // Electric has no effect on Ground
-        GRASS: 1,
-        FIRE: 1
-    },
-    WATER: {
-        FIRE: 2,     // Water is super effective vs Fire
-        GROUND: 1,   // Water is super effective vs Ground
-        GRASS: 0.5,
-        ROCK: 2,
-        ELECTRIC: 1
+    NORMAL: {
+        ROCK: 0.5,
+        GHOST: 0,
+        STEEL: 0.5
     },
     FIRE: {
-        GRASS: 2,    // Fire is super effective vs Grass
-        WATER: 0.5,  // Fire is not very effective vs Water
-        ROCK: 0.5,   // Fire is not very effective vs Rock
+        FIRE: 0.5,
+        WATER: 0.5,
+        GRASS: 2,
+        ICE: 2,
+        BUG: 2,
+        ROCK: 0.5,
+        DRAGON: 0.5,
+        STEEL: 2
+    },
+    WATER: {
+        FIRE: 2,
+        WATER: 0.5,
+        GRASS: 0.5,
+        GROUND: 2,
+        ROCK: 2,
+        DRAGON: 0.5
+    },
+    ELECTRIC: {
+        WATER: 2,
+        ELECTRIC: 0.5,
+        GRASS: 0.5,
+        GROUND: 0,
+        FLYING: 2,
+        DRAGON: 0.5
     },
     GRASS: {
-        WATER: 2,    // Grass is super effective vs Water
-        FIRE: 0.5,   // Grass is not very effective vs Fire
-        GROUND: 2,   // Grass is super effective vs Ground
+        FIRE: 0.5,
+        WATER: 2,
+        GRASS: 0.5,
+        POISON: 0.5,
+        GROUND: 2,
+        FLYING: 0.5,
+        BUG: 0.5,
+        ROCK: 2,
+        DRAGON: 0.5,
+        STEEL: 0.5
     },
-    ROCK: {
-        FIRE: 2,     // Rock is super effective vs Fire
-        WATER: 0.5,  // Rock is not very effective vs Water
-        ELECTRIC: 2, // Rock is not very effective vs Electric
+    ICE: {
+        FIRE: 0.5,
+        WATER: 0.5,
+        GRASS: 2,
+        ICE: 0.5,
+        GROUND: 2,
+        FLYING: 2,
+        DRAGON: 2,
+        STEEL: 0.5
+    },
+    FIGHTING: {
+        NORMAL: 2,
+        ICE: 2,
+        POISON: 0.5,
+        FLYING: 0.5,
+        PSYCHIC: 0.5,
+        BUG: 0.5,
+        ROCK: 2,
+        GHOST: 0,
+        STEEL: 2,
+        DARK: 2,
+        FAIRY: 0.5
+    },
+    POISON: {
+        GRASS: 2,
+        POISON: 0.5,
+        GROUND: 0.5,
+        ROCK: 0.5,
+        GHOST: 0.5,
+        STEEL: 0,
+        FAIRY: 2
     },
     GROUND: {
-        ELECTRIC: 1, // Ground is super effective vs Electric
-        FIRE: 1,     
-        ROCK: 1,     
+        FIRE: 2,
+        ELECTRIC: 2,
+        GRASS: 0.5,
+        POISON: 2,
+        FLYING: 0,
+        BUG: 0.5,
+        ROCK: 2,
+        STEEL: 2
     },
-    // Add more types as needed
+    FLYING: {
+        ELECTRIC: 0.5,
+        GRASS: 2,
+        FIGHTING: 2,
+        BUG: 2,
+        ROCK: 0.5,
+        STEEL: 0.5
+    },
+    PSYCHIC: {
+        FIGHTING: 2,
+        POISON: 2,
+        PSYCHIC: 0.5,
+        DARK: 0,
+        STEEL: 0.5
+    },
+    BUG: {
+        FIRE: 0.5,
+        GRASS: 2,
+        FIGHTING: 0.5,
+        POISON: 0.5,
+        FLYING: 0.5,
+        PSYCHIC: 2,
+        GHOST: 0.5,
+        DARK: 2,
+        STEEL: 0.5,
+        FAIRY: 0.5
+    },
+    ROCK: {
+        FIRE: 2,
+        ICE: 2,
+        FIGHTING: 0.5,
+        GROUND: 0.5,
+        FLYING: 2,
+        BUG: 2,
+        STEEL: 0.5
+    },
+    GHOST: {
+        NORMAL: 0,
+        PSYCHIC: 2,
+        GHOST: 2,
+        DARK: 0.5
+    },
+    DRAGON: {
+        DRAGON: 2,
+        STEEL: 0.5,
+        FAIRY: 0
+    },
+    DARK: {
+        FIGHTING: 0.5,
+        PSYCHIC: 2,
+        GHOST: 2,
+        DARK: 0.5,
+        FAIRY: 0.5
+    },
+    STEEL: {
+        FIRE: 0.5,
+        WATER: 0.5,
+        ELECTRIC: 0.5,
+        ICE: 2,
+        ROCK: 2,
+        STEEL: 0.5,
+        FAIRY: 2
+    },
+    FAIRY: {
+        FIRE: 0.5,
+        FIGHTING: 2,
+        POISON: 0.5,
+        DRAGON: 2,
+        DARK: 2,
+        STEEL: 0.5
+    }
 };
