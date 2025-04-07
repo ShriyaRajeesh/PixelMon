@@ -167,6 +167,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     evolvesTo: "BLASTOISE", // Evolves at level 36
     evolutionLevel: 36,
   },
+  
   BLASTOISE: {
     PokemonId: 30,
     name: "blastoise",

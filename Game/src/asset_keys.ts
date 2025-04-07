@@ -43,8 +43,8 @@ export const POKEMON = Object.freeze({
     PIKACHU: 'pikachu' as string,
     RAICHU: 'raichu' as string,
 
-    PSYDUCK: 'psyduck' as string,
-    GOLDUCK: 'golduck' as string,
+    // PSYDUCK: 'psyduck' as string,
+    // GOLDUCK: 'golduck' as string,
 
     RATTATA: 'rattata' as string,
     RATICATE: 'raticate' as string,

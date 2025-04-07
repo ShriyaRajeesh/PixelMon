@@ -161,6 +161,7 @@ export default class scene2 extends Phaser.Scene {
                 
             });
             this.opponentData = POKEMON_DATA[this.OPPONENT as keyof typeof POKEMON_DATA];
+            console.log(this.opponentData);
             this.activeOpponentPokemon = new enemyPokemon({
                 scene: this,
                 _pokemonDetails: {
@@ -184,6 +185,7 @@ export default class scene2 extends Phaser.Scene {
             
         } else {
             console.log("wild pokemon part")
+            console.log(this.OPPONENT);
             this.opponentData = POKEMON_DATA[this.OPPONENT as keyof typeof POKEMON_DATA];
             this.opponentTeam = [];
             console.log(this.opponentData);
